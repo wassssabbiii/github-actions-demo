@@ -40,3 +40,6 @@ jobs:
         run: |
           docker build -t my-app:latest .
           echo "Docker image compiled successfully!"
+       # Trigger Render deployment only after tests pass and container compiles successfully
+      - name: Trigger Render Deployment
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"   
